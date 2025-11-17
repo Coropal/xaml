@@ -7,6 +7,15 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <!--Счётчик-->
+            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,15">
+            <TextBlock Text="Мои задачи" FontSize="24" Foreground="Black"/>
+            <TextBlock x:Name="TaskCounter" FontSize="18" Margin="10,5,0,0"/>
+        </StackPanel>
     </Grid>
 </Window>
