@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:КТ___15"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Margin="10,0,10,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -17,5 +17,54 @@
             <TextBlock Text="Мои задачи" FontSize="24" Foreground="Black"/>
             <TextBlock x:Name="TaskCounter" FontSize="18" Margin="10,5,0,0"/>
         </StackPanel>
+        <Grid Grid.Row="0" Margin="0,40,0,15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="NewTaskBar" Grid.Column="0" FontSize="16"
+                     Padding="12,8" Margin="0,0,10,0" BorderBrush="DarkGray"
+                     TextChanged="NewTaskBar_Change"
+                     KeyDown="NewTaskBar_KeyDown"
+                     ToolTip="Вставьте задачу и нажмите Enter или кнопку"/> <!--Подсказка-->
+            <Button Content="Добавить"
+                    Grid.Column="1"
+                    Width="90"
+                    Padding="10,8"
+                    FontSize="14"
+                    Click="AddTask_Click"
+                    IsEnabled="False"
+                    x:Name="AddButton"/>
+        </Grid>
+        <!--Тут будут Задачи-->
+            <ListBox x:Name="TasksList" Grid.Row="1" Background="Transparent"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 SelectionChanged="TaskList_Changed">
+            <DataTemplate>
+                <Border Background="Red" Margin="0,0,0,8" Padding="12,10"
+                        CornerRadius="8" BorderBrush="#e0e0e0e0">
+                    <Grid>
+                        <Grid Margin="10,0,10,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <CheckBox Grid.Column="0"
+                                      IsChecked="{Binding IsCompleted}"
+                                      Checked="TaskCheckBox_Checked"
+                                      VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="1"
+                                                 Text="{Binding Text}"
+                                       FontSize="16" Margin="10,0"
+                                       VerticalAlignment="Center"/>
+                            <Button Content="x" Grid.Column="2" Width="28" Height="28"
+                                    FontSize="18" Tag="{Binding}" Click="DeleteTask_Click"
+                                    ToolTip="Удалить Задачу"/>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </DataTemplate>
+        </ListBox>
     </Grid>
 </Window>
